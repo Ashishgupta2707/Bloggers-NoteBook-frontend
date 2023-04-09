@@ -1,0 +1,46 @@
+.wrapper{
+    height: 100vh;
+    background-color: rgb(29, 28, 28);
+}
+
+.form{
+   
+    box-shadow: 4px 4px 4px 4px rgb(158, 232, 242) ;
+    width: 450px;
+}
+
+.card-body{
+    background-color: black;
+}
+
+img{
+    height: 340px;
+}
+
+.box{
+    display: flex;
+    flex-direction: column;
+    height: 350px;
+}
+
+.formlog{
+    margin: auto;
+    width: 350px;
+}
+
+.btnlog{
+    display: flex;
+    width: 300px;
+}
+
+.or{
+    color: white; 
+}
+
+.error{
+    font-size: 8px ;
+    color: rgb(196, 2, 2);
+    line-height: 0;
+    margin-top: 7px;
+    font-weight: 500;
+}

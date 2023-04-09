@@ -1,0 +1,38 @@
+.pic{
+    margin-bottom: 8px;
+}
+
+.formcontrolpost{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    /* border: 2px solid red; */
+}
+
+.titlepost{
+    flex: 1;
+    margin: 0px 30px;
+    font-size: 25px;
+    border: none;
+}
+
+.titlepost:focus{
+    outline: none;
+}
+
+.textsome{
+    margin-top: 40px;
+    font-size: 18px;
+    box-shadow: 1px 1px 1px 1px rgb(16, 16, 16) ;
+}
+
+.categorypost{
+    font-size: 25px;
+    border: none;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.categorypost:focus{
+    outline: none;
+}

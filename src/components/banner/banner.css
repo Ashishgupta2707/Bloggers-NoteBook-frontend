@@ -1,0 +1,13 @@
+.bannerimg{
+    height: 50vh;
+    object-fit: cover;
+}
+
+.banneritem{
+    opacity: 0.9;
+}
+
+.textitem{
+    color: black;
+}
+
