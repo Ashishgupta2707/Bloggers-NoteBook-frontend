@@ -1,11 +1,11 @@
-import { useState ,useEffect,useContext} from 'react';
-import pic from '../create/tech.jpg';
+import { useState , useEffect , useContext} from 'react';
+// import pic from '../create/tech.jpg';
 import '../create/CreatePost.css';
 import { AddToPhotos as Add } from '@mui/icons-material';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import { DataContext } from '../../context/DataProvider';
-import { API } from '../../service/api';
+import { API } from '../../service/api.js';
 
 const initialPost = {
     title: '',
@@ -18,13 +18,18 @@ const initialPost = {
 
 const CreatePost = () => {
     
-    const location = useLocation;
+    const location = useLocation();
+    const navigate = useNavigate();
+
+
     const [post, setPost] = useState(initialPost);
     const [file, setFile] = useState('');
     const { account } = useContext(DataContext);
 
+    const url = post.picture ? post.picture: 'https://www.internetgovernance.org/wp-content/uploads/iStock-597935408-1400x400.jpg';
+
     useEffect(() => {
-        const getImage = async() => {
+        const getImage = async () => {
             if (file) {
                 const data = new FormData();
                 data.append("name", file.name);
@@ -39,17 +44,24 @@ const CreatePost = () => {
 
         post.categories = location.search?.split('=')[1] || 'All';
         post.username = account.username;
-    },[file])
+    }, [file]);
 
     const handlechange = (e) => {
         setPost({ ...post, [e.target.name]: e.target.value })
         
     }
 
+    const savepost = async () => {
+        let response = await API.createPost(post);
+        if (response.isSuccess) {
+            navigate('/');
+        }
+    }
+
     return (
         <>
             <div className="container">
-                <img src={pic} class="img-fluid pic" alt="..." />
+                <img src={url} class="img-fluid pic" alt="..." />
                 
                 <div className="formcontrolpost">
                     <label htmlFor="fileinput">
@@ -61,10 +73,9 @@ const CreatePost = () => {
                     <input type="Text" className='titlepost' placeholder="Title" onChange={(e)=>handlechange(e)} name='title'></input>
 
 
-                    <button type="button" class="btn btn-success">Publish</button>
+                    <button type="button" class="btn btn-success" onClick={ () => savepost()}>Publish</button>
                     
                 </div>
-                <input type="Text" className='categorypost' placeholder="Category"></input>
 
                 <textarea class="form-control textsome" id="exampleFormControlTextarea1" rows="4" placeholder='Describe Something' onChange={(e)=>handlechange(e)} name='description' ></textarea>
             </div>
